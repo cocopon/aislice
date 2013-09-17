@@ -19,7 +19,7 @@ How to Use
 - Create a new document.
 - Slice, slice, slice!
 - Change the name of each slice.
-  It'll be used as expored file name.
+  It'll be used as an expored path.
 
 Then, there are two ways to use this plugin.
 
