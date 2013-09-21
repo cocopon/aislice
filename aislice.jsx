@@ -173,11 +173,7 @@ ai.document = {
 	},
 
 	exportSlice: function(document, slice, file, scale) {
-		// Save current artboardRect
-		var artboards = document.artboards;
-		var artboard = artboards[artboards.getActiveArtboardIndex()];
-		var rect = artboard.artboardRect;
-
+		// Fit artboardRect to the specified slice to export
 		ai.document.selectPageItem(document, slice);
 		document.fitArtboardToSelectedArt(0);
 
@@ -189,7 +185,7 @@ ai.document = {
 		document.exportFile(file, ExportType.PNG24, opts);
 
 		// Restore artboardRect
-		artboard.artboardRect = rect;
+		app.undo();
 	}
 };
 
