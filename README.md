@@ -4,8 +4,8 @@ aislice
 
 Overview
 --------
-aislice is a batch export plugin for iOS developer who uses Adobe Illustrator.
-This plugin find all slices contained in the active document and exports them at multiple resolutions (non-Retina and Retina).
+aislice is a batch export script for iOS developer who uses Adobe Illustrator.
+This script find all slices contained in the active document and exports them at multiple resolutions (non-Retina and Retina).
 
 
 System Requirement
@@ -21,7 +21,7 @@ How to Use
 - Change the name of each slice.
   It'll be used as an expored path.
 
-Then, there are two ways to use this plugin.
+Then, there are two ways to use this script.
 
 1. Running directly
   - Launch Adobe Illustrator CC.
@@ -29,7 +29,7 @@ Then, there are two ways to use this plugin.
   - Select `aislice.jsx`.
 
 2. Registering as menu
-  - Place `aislice.jsx` into the plugin directory
+  - Place `aislice.jsx` into the script directory
     (If you use OS X, `/Applications/Adobe Illustrator CC/Presets.localized/...`).
   - Launch Adobe Illustrator CC.
   - File > Scripts > Your Script
