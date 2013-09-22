@@ -31,8 +31,7 @@ Then, there are two ways to use this script.
 2. Registering as menu
   - Place `aislice.jsx` into the script directory
     (If you use OS X, `/Applications/Adobe Illustrator CC/Presets.localized/...`).
-  - Launch Adobe Illustrator CC.
-  - File > Scripts > Your Script
+  - Launch Adobe Illustrator CC, then File > Scripts > aislice
 
 
 LICENSE
