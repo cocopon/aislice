@@ -190,8 +190,26 @@ ai.document = {
 };
 
 
+// TODO: Is there an official document about available error codes?
+ai.error = {
+	NO_SUCH_ELEMENT: 1302
+};
+
+
 var main = function() {
-	var document = app.activeDocument;
+	var document;
+	try {
+		document = app.activeDocument;
+	} catch (e) {
+		if (e.number === ai.error.NO_SUCH_ELEMENT) {
+			alert('No documents to export.');
+		}
+		else {
+			alert('An unexpected error has occurred.');
+		}
+		return;
+	}
+
 	var slices = ai.document.findSlices(document);
 	if (util.array.isEmpty(slices.length)) {
 		alert('No slices to export.');
