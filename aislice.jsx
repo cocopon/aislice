@@ -16,7 +16,8 @@
 var config = {
 	resolutions: [
 		{scale: 100, postfix: ''},
-		{scale: 200, postfix: '@2x'}
+		{scale: 200, postfix: '@2x'},
+		{scale: 300, postfix: '@3x'}
 	]
 };
 
