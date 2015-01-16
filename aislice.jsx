@@ -107,16 +107,16 @@ util.array = {
 util.path = {
 	getFileName: function(path) {
 		var index = path.lastIndexOf('/');
-		return index < 0
-			? path
-			: path.substring(index + 1);
+		return index < 0 ?
+			path :
+			path.substring(index + 1);
 	},
 
 	getFolderName: function(path) {
 		var index = path.lastIndexOf('/');
-		return index < 0
-			? ''
-			: path.substring(0, index);
+		return index < 0 ?
+			'' :
+			path.substring(0, index);
 	},
 
 	join: function(comps) {
