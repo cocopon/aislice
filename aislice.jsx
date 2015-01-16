@@ -129,36 +129,15 @@ var ai = {};
 
 
 ai.document = {
-	isPageItem: function(value) {
+	isPathItem: function(value) {
 		// TODO: Is there a better way?
 		return !util.isNull(value.typename.match(/Item$/));
-	},
-
-	forEachPageItem: function(document, func, opt_scope) {
-		var scope = opt_scope || this;
-		var targets = [document];
-		var target;
-
-		while (targets.length > 0) {
-			target = targets.shift();
-
-			if (ai.document.isPageItem(target)) {
-				func.call(scope, target);
-			}
-
-			if (util.isDefined(target.layers)) {
-				targets = util.array.concat(targets, target.layers);
-			}
-			if (util.isDefined(target.pageItems)) {
-				targets = util.array.concat(targets, target.pageItems);
-			}
-		}
 	},
 
 	findSlices: function(document) {
 		var slices = [];
 
-		ai.document.forEachPageItem(document, function(item) {
+		util.array.forEach(document.pathItems, function(item) {
 			if (item.sliced) {
 				slices.push(item);
 			}
@@ -167,15 +146,15 @@ ai.document = {
 		return slices;
 	},
 
-	selectPageItem: function(document, itemToSelect) {
-		ai.document.forEachPageItem(document, function(item) {
+	selectPathItem: function(document, itemToSelect) {
+		util.array.forEach(document.pathItems, function(item) {
 			item.selected = (item === itemToSelect);
 		});
 	},
 
-	exportSlice: function(document, slice, file, scale) {
+	exportSlice: function(document, slice, file, scale, opt_shouldUndo) {
 		// Fit artboardRect to the specified slice to export
-		ai.document.selectPageItem(document, slice);
+		ai.document.selectPathItem(document, slice);
 		document.fitArtboardToSelectedArt(0);
 
 		var opts = new ExportOptionsPNG24();
@@ -185,8 +164,13 @@ ai.document = {
 
 		document.exportFile(file, ExportType.PNG24, opts);
 
-		// Restore artboardRect
-		app.undo();
+		var shouldUndo = util.isDefined(opt_shouldUndo) ?
+			opt_shouldUndo :
+			true;
+		if (shouldUndo) {
+			// Restore artboardRect
+			app.undo();
+		}
 	}
 };
 
@@ -234,9 +218,16 @@ var main = function() {
 			var fileName = util.path.getFileName(relPath) + resolution.postfix;
 			var file = new File(util.path.join([folder.absoluteURI, fileName]));
 
-			ai.document.exportSlice(document, slice, file, resolution.scale);
+			ai.document.exportSlice(document, slice, file, resolution.scale, false);
 		});
 	});
+
+	// Batch undo changing artboardRect for a reason of performance issue
+	var totalUndoes = slices.length * config.resolutions.length;
+	var i;
+	for (i = 0; i < totalUndoes; i++) {
+		app.undo();
+	}
 };
 
 
