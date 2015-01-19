@@ -8,8 +8,8 @@ aislice is a batch export script for iOS developer who uses Adobe Illustrator.
 This script find all slices contained in the active document and exports them at multiple resolutions (non-Retina and Retina).
 
 
-System Requirement
-------------------
+System Requirements
+-------------------
 - Adobe Illustrator CC or later
   (might work on older version but I haven't tested it)
 
@@ -19,7 +19,7 @@ How to Use
 - Create a new document.
 - Slice, slice, slice!
 - Change the name of each slice.
-  It'll be used as an expored path.
+  It'll be used as an explored path.
 
 Then, there are two ways to use this script.
 
