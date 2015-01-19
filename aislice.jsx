@@ -70,7 +70,7 @@ util.array = {
 
 	forEach: function(array, func, opt_scope) {
 		var len = array.length;
-		var scope = opt_scope || this;
+		var scope = util.or(opt_scope, this);
 		var i;
 
 		for (i = 0; i < len; i++) {
