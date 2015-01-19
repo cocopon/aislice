@@ -13,7 +13,7 @@
 // limitations under the License.
 
 
-var config = {
+var CONFIG = {
 	resolutions: [
 		{scale: 100, postfix: ''},
 		{scale: 200, postfix: '@2x'},
@@ -211,7 +211,7 @@ var main = function() {
 			folder.create();
 		}
 
-		util.array.forEach(config.resolutions, function(resolution) {
+		util.array.forEach(CONFIG.resolutions, function(resolution) {
 			var fileName = util.path.getFileName(relPath) + resolution.postfix;
 			var file = new File(util.path.join([folder.absoluteURI, fileName]));
 
@@ -220,7 +220,7 @@ var main = function() {
 	});
 
 	// Batch undo changing artboardRect for a reason of performance issue
-	var totalUndoes = slices.length * config.resolutions.length;
+	var totalUndoes = slices.length * CONFIG.resolutions.length;
 	var i;
 	for (i = 0; i < totalUndoes; i++) {
 		app.undo();
