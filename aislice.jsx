@@ -37,10 +37,6 @@ var util = {
 		return type;
 	},
 
-	isDefined: function(value) {
-		return value !== undefined;
-	},
-
 	isNull: function(value) {
 		return value === null;
 	},
