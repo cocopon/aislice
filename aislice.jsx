@@ -43,6 +43,10 @@ var util = {
 
 	isNull: function(value) {
 		return value === null;
+	},
+
+	or: function(value, defaultValue) {
+		return (value === undefined) ? defaultValue : value;
 	}
 };
 
@@ -80,7 +84,7 @@ util.array = {
 
 	insertArrayAt: function(array, itemsToAdd, opt_index) {
 		var len = array.length;
-		var index = (opt_index === undefined) ? 0 : opt_index;
+		var index = util.or(opt_index, 0);
 		if (index < 0) {
 			index = len - index;
 		}
@@ -164,11 +168,8 @@ ai.document = {
 
 		document.exportFile(file, ExportType.PNG24, opts);
 
-		var shouldUndo = util.isDefined(opt_shouldUndo) ?
-			opt_shouldUndo :
-			true;
-		if (shouldUndo) {
-			// Restore artboardRect
+		// Restore artboardRect if needed
+		if (util.or(opt_shouldUndo, true)) {
 			app.undo();
 		}
 	}
